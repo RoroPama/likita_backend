@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import User from "../models/user.model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import appConfig from "../config/app_config";
+import appConfig, { cookieConfig } from "../config/app_config";
 import { IUser } from "../types/user";
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -37,12 +37,7 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
       { expiresIn: "7d" }
     );
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: appConfig.node_env === "production",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: "strict",
-    });
+    res.cookie("token", token, cookieConfig);
 
     return res.status(201).json({
       message: "User created",
