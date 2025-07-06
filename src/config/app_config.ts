@@ -18,4 +18,10 @@ export const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+export const cookieConfig = {
+  httpOnly: true,
+  secure: appConfig.node_env === "production",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  sameSite: "none" as const,
+};
 export default appConfig;

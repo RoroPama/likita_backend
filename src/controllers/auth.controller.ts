@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/user.model";
 import bcrypt from "bcrypt";
-import appConfig from "../config/app_config";
+import appConfig, { cookieConfig } from "../config/app_config";
 import { IUser } from "../types/user";
 const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -32,11 +32,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
       { expiresIn: "7d" }
     );
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: appConfig.node_env === "production",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    res.cookie("token", token, { ...cookieConfig });
 
     return res.status(200).json({
       message: "Connexion réussie",
@@ -109,7 +105,6 @@ const checkIfAuthenticated = async (
     return res.status(401).json({ message: "Token invalide ou expiré." });
   }
 };
-
 
 export default {
   login,
