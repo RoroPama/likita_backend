@@ -47,7 +47,7 @@ const createEvent = async (req: Request, res: Response) => {
     return res.status(201).json({
       success: true,
       message: "Événement créé avec succès",
-      event: eventFormated,
+      data: { event: eventFormated },
     });
   } catch (error) {
     return res.status(500).json({
