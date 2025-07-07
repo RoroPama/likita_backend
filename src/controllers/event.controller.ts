@@ -76,7 +76,7 @@ const getAllEvents = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       success: true,
-      events: formattedEvents,
+      data: { events: formattedEvents },
     });
   } catch (error) {
     return res.status(500).json({
@@ -140,7 +140,7 @@ const getAllEventswithUsers = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       success: true,
-      events: formattedEvents,
+      data: { events: formattedEvents },
     });
   } catch (error) {
     return res.status(500).json({
@@ -314,7 +314,7 @@ const addComment = async (req: Request, res: Response) => {
     return res.status(201).json({
       success: true,
       message: "Commentaire ajouté avec succès",
-      comment: formattedComment,
+      data: { comment: formattedComment },
     });
   } catch (error) {
     return res.status(500).json({
@@ -363,7 +363,7 @@ const getEventComments = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       success: true,
-      comments: formattedComments,
+      data: { comments: formattedComments },
     });
   } catch (error) {
     return res.status(500).json({
