@@ -12,16 +12,15 @@ export const corsOptions = {
     appConfig.node_env === "development"
       ? "http://localhost:5173"
       : "https://likita-app.netlify.app",
-  credentials: true,
   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   optionsSuccessStatus: 200,
 };
 
-export const cookieConfig = {
-  httpOnly: true,
-  secure: appConfig.node_env === "production",
-  maxAge: 7 * 24 * 60 * 60 * 1000,
-  sameSite: "none" as const,
-};
+// export const cookieConfig = {
+//   httpOnly: true,
+//   secure: appConfig.node_env === "production",
+//   maxAge: 7 * 24 * 60 * 60 * 1000,
+//   sameSite: "none" as const,
+// };
 export default appConfig;
